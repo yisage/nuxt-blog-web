@@ -19,10 +19,14 @@
                 href="https://cn.vuejs.org/guide/introduction.html">Vue3</a>,
             <a href="https://b3log.org/vditor/">Vditor</a>实现功能,使用
             <a href="https://bulma.io/">Bulma.css</a>仿
-            <a href="https://www.cyberpunk.net/fr/zh-cn/">赛博朋克</a>布局风实现响应式页面
+            <a href="https://www.cyberpunk.net/fr/zh-cn/">赛博朋克</a>布局风实现响应式页面.
             </p>
             <p>
                 后端使用<a href="">NodeJS</a>,<a href="">Express</a>,<a href="">Sequelize</a>,<a href="">Mysql</a>托管于腾讯云轻量级服务器
+            </p>
+            <p>
+                项目开源链接
+                <a href="https://github.com/yisage/nuxt-blog-web.git">https://github.com/yisage/nuxt-blog-web.git</a>
             </p>
         </Card>
         <Card >
