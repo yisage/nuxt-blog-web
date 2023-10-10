@@ -54,4 +54,35 @@ content?: string;
         });
     }
 
+    /**
+     * 新增回复
+     * @returns any OK
+     * @throws ApiError
+     */
+    public static addReply({
+requestBody,
+}: {
+requestBody?: {
+/**
+ * 回复内容
+ */
+content: string;
+/**
+ * 在哪个评论回复
+ */
+commentId: number;
+/**
+ * 回复人的ID
+ */
+recipientId?: number;
+},
+}): Promise<any> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/comment/add-reply',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
 }

@@ -10,10 +10,15 @@ const getTokenHeaders = function () {
     const headers: { token?: string } = {};
     if (process.server) return {} //服务端渲染没有token数据
     const userStore = useUserStore()
-    if (userStore.token) {
-        headers.token = userStore.token
+    if (userStore.userInfo?.token) {
+        headers.token = userStore.userInfo?.token
     }
     return headers
+}
+
+const authorizationExpire = function () {
+    const userStore = useUserStore();
+    userStore.resetUserInfo()
 }
 
 const logError = function (error: any) {
@@ -24,7 +29,18 @@ const logError = function (error: any) {
         if (error.value.data) {
             const { data } = error.value;
             const { code, err } = data
-            Message.error(`${code}-${err}`)
+            switch (code) {
+                case 401:
+                    Message.error(`${code}-${err}`)
+                    authorizationExpire();
+                    break;
+                case 404:
+                    Message.error(`${code}-${err}`)
+                    break
+                default:
+                    Message.error(`${code}-${err}`)
+            }
+
         }
     }
 }

@@ -70,6 +70,34 @@ paths:
               type: object
               properties: {}
         description: ''
+  /comment/add-reply:
+    post:
+      summary: ''
+      operationId: add-reply
+      responses:
+        '200':
+          description: OK
+      tags:
+        - comment
+      description: 新增回复
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  description: 回复内容
+                commentId:
+                  type: number
+                  description: 在哪个评论回复
+                recipientId:
+                  type: number
+                  description: 回复人的ID
+              required:
+                - content
+                - commentId
 components:
   schemas:
     Comment:

@@ -16,7 +16,7 @@ const getTokenHeaders = function () {
     return headers
 }
 
-const authorizationExpire = function(){
+const authorizationExpire = function () {
     const userStore = useUserStore();
     userStore.resetUserInfo()
 }
@@ -29,7 +29,7 @@ const logError = function (error: any) {
         if (error.value.data) {
             const { data } = error.value;
             const { code, err } = data
-            switch(code){
+            switch (code) {
                 case 401:
                     Message.error(`${code}-${err}`)
                     authorizationExpire();
@@ -40,7 +40,7 @@ const logError = function (error: any) {
                 default:
                     Message.error(`${code}-${err}`)
             }
-           
+
         }
     }
 }
