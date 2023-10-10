@@ -1,0 +1,99 @@
+openapi: 3.0.0
+info:
+  title: 用户管理
+  version: '1.0'
+  description: 伊萨格后台管理-角色管理
+servers:
+  - url: 'http://localhost:3745'
+paths:
+  /user/get-user-list:
+    get:
+      summary: Role
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                  userList:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/UserItem'
+                  total:
+                    type: number
+                required:
+                  - code
+                  - userList
+                  - total
+              examples:
+                example-1: {}
+      operationId: get-user-list
+      description: 获取用户列表
+      tags:
+        - user
+      parameters:
+        - schema:
+            type: number
+          in: query
+          name: currentPage
+          required: true
+        - schema:
+            type: number
+          in: query
+          name: pageSize
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: name
+        - schema:
+            type: array
+          in: query
+          name: roleIds
+          required: true
+          description: ''
+    parameters: []
+components:
+  schemas:
+    UserItem:
+      title: UserItem
+      type: object
+      properties:
+        name:
+          type: string
+        age:
+          type: number
+        account:
+          type: string
+        email:
+          type: string
+        frozen:
+          type: boolean
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+        avatar:
+          type: string
+        userId:
+          type: number
+        roleIds:
+          type: string
+        roleNames:
+          type: string
+      required:
+        - name
+        - age
+        - account
+        - email
+        - frozen
+        - createdAt
+        - updatedAt
+        - avatar
+        - userId
+        - roleIds
+        - roleNames

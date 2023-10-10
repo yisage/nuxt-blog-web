@@ -1,0 +1,30 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "mcodegen": "mcodegen --input yaml --output utils/request --request utils/http.ts"
+  },
+  "devDependencies": {
+    "@mynni/tscodegen": "^1.0.7",
+    "@nuxt/devtools": "latest",
+    "@nuxtjs/composition-api": "^0.33.1",
+    "@pinia/nuxt": "^0.4.11",
+    "@types/node": "^18",
+    "@vueuse/core": "^10.5.0",
+    "@vueuse/nuxt": "^10.5.0",
+    "arco-design-nuxt-module": "^0.0.15",
+    "nuxt": "^3.6.2",
+    "pinia": "^2.1.6",
+    "sass": "^1.63.6"
+  },
+  "dependencies": {
+    "@kangc/v-md-editor": "^2.3.15",
+    "bulma": "^0.9.4",
+    "vditor": "^3.9.4"
+  }
+}

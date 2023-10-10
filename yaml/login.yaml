@@ -1,0 +1,90 @@
+openapi: 3.0.0
+info:
+  title: 登录
+  version: '1.0'
+  description: 伊萨格API-登录
+servers:
+  - url: 'http://localhost:3745'
+paths:
+  /login/user-login:
+    post:
+      summary: ''
+      operationId: user-login
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  data:
+                    type: object
+                    required:
+                      - userId
+                      - userName
+                      - age
+                      - account
+                      - email
+                      - frozen
+                      - updatedAt
+                      - avatar
+                      - roles
+                      - token
+                    properties:
+                      userId:
+                        type: number
+                      userName:
+                        type: string
+                      age:
+                        type: number
+                      account:
+                        type: string
+                      email:
+                        type: string
+                      frozen:
+                        type: boolean
+                      createdAt:
+                        type: string
+                      updatedAt:
+                        type: string
+                      avatar:
+                        type: string
+                      roles:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            roleId:
+                              type: number
+                            roleName:
+                              type: string
+                          required:
+                            - roleId
+                            - roleName
+                      token:
+                        type: string
+                required:
+                  - code
+                  - data
+      description: 前台用户登录
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                account:
+                  type: string
+                password:
+                  type: string
+              required:
+                - account
+                - password
+      tags:
+        - login
+    parameters: []
+components:
+  schemas: {}

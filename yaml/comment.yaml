@@ -1,0 +1,129 @@
+openapi: 3.0.0
+info:
+  title: 评论系统
+  version: '1.0'
+  description: 伊萨格API-评论系统
+servers:
+  - url: 'http://localhost:3745'
+paths:
+  /comment/get-comment:
+    get:
+      summary: Comment
+      tags:
+        - comment
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Comment'
+                required:
+                  - code
+                  - data
+      operationId: get-comment-list
+      description: 获取评论列表
+      parameters:
+        - schema:
+            type: number
+          in: query
+          name: articleId
+          required: true
+    parameters: []
+  /comment/add-comment:
+    post:
+      summary: Comment
+      operationId: add-comment
+      responses:
+        '200':
+          description: OK
+      description: 新增评论
+      tags:
+        - comment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                articleId:
+                  type: number
+                content:
+                  type: string
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+          text/html:
+            schema:
+              type: object
+              properties: {}
+        description: ''
+components:
+  schemas:
+    Comment:
+      title: Comment
+      type: object
+      description: ''
+      properties:
+        commentId:
+          type: number
+        content:
+          type: string
+        createdAt:
+          type: string
+        articleId:
+          type: number
+        userId:
+          type: number
+        name:
+          type: string
+        replies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Replie'
+      required:
+        - commentId
+        - content
+        - createdAt
+        - articleId
+        - userId
+        - name
+        - replies
+    Replie:
+      title: Replie
+      type: object
+      properties:
+        replieId:
+          type: number
+        content:
+          type: string
+        createdAt:
+          type: string
+        senderId:
+          type: number
+        recipientId:
+          type: number
+        recipientName:
+          type: string
+        senderName:
+          type: string
+      required:
+        - replieId
+        - content
+        - createdAt
+        - senderId
+        - recipientId
+        - recipientName
+        - senderName

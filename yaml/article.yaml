@@ -1,0 +1,287 @@
+openapi: 3.0.0
+info:
+  title: 文章管理
+  version: '1.0'
+  description: 伊萨格后台管理-文章管理
+servers:
+  - url: 'http://localhost:3745'
+paths:
+  /article/get-article-list:
+    get:
+      summary: Articel
+      tags:
+        - article
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                  articleList:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        articleId:
+                          type: number
+                        abstract:
+                          type: string
+                        fabulous:
+                          type: number
+                        viewNum:
+                          type: number
+                          description: 查看次数
+                        title:
+                          type: string
+                          description: 文章标题
+                        createdAt:
+                          type: string
+                          description: 创建时间
+                        updatedAt:
+                          type: string
+                          description: "最新修改shi'jian"
+                        authName:
+                          type: string
+                          description: 作者名称
+                        typeName:
+                          type: string
+                          description: 文章分类名称
+                        typeId:
+                          type: number
+                          description: 文章分类ID
+                        articleTags:
+                          type: array
+                          description: 文章标签列表
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: number
+                              name:
+                                type: string
+                        approveCount:
+                          type: number
+                          description: 点赞总数
+                        isApprove:
+                          type: number
+                          description: 是否点赞
+                        coverUrl:
+                          type: string
+                          description: 文章目录图片
+                      required:
+                        - articleId
+                        - abstract
+                        - fabulous
+                        - viewNum
+                        - title
+                        - createdAt
+                        - updatedAt
+                        - authName
+                        - typeName
+                        - typeId
+                        - articleTags
+                        - approveCount
+                        - isApprove
+                        - coverUrl
+                  total:
+                    type: number
+                    description: 文章总数
+                required:
+                  - code
+                  - articleList
+                  - total
+      operationId: get-article-list
+      description: 获取文章列表
+      parameters:
+        - schema:
+            type: number
+          in: query
+          description: 文章分类id
+          name: typeId
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: currentPage
+          description: 当前页码
+        - schema:
+            type: string
+          in: query
+          name: pageSize
+          description: 每页数量
+      security: []
+  /article/add-article:
+    post:
+      summary: Articel
+      operationId: add-article
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                  msg:
+                    type: string
+                required:
+                  - code
+      tags:
+        - article
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                content:
+                  type: string
+                typeId:
+                  type: string
+                tags:
+                  type: array
+                  items:
+                    type: number
+                authId:
+                  type: number
+                abstract:
+                  type: string
+              required:
+                - title
+                - content
+                - typeId
+                - tags
+                - abstract
+      description: 添加文章
+  /article/get-tag-list:
+    get:
+      summary: Articel
+      tags:
+        - article
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                  tagList:
+                    type: array
+                    description: 标签列表
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: 标签名称
+                        id:
+                          type: number
+                          description: 标签ID
+                      required:
+                        - name
+                        - id
+                required:
+                  - code
+                  - tagList
+      operationId: get-tag-list
+      description: 获取标签列表
+  /article/get-article-details:
+    get:
+      summary: Articel
+      tags:
+        - article
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                  data:
+                    type: object
+                    required:
+                      - id
+                      - title
+                      - fabulous
+                      - viewNum
+                      - abstract
+                      - content
+                      - authId
+                      - createdAt
+                      - updatedAt
+                      - coverUrl
+                      - time
+                      - authName
+                      - authAvatar
+                      - typeId
+                      - articleTags
+                    properties:
+                      id:
+                        type: number
+                      title:
+                        type: string
+                      fabulous:
+                        type: number
+                      viewNum:
+                        type: number
+                      abstract:
+                        type: string
+                      content:
+                        type: string
+                      authId:
+                        type: number
+                      createdAt:
+                        type: string
+                      updatedAt:
+                        type: string
+                      coverUrl:
+                        type: string
+                      time:
+                        type: string
+                      authName:
+                        type: string
+                      authAvatar:
+                        type: string
+                      typeId:
+                        type: number
+                      articleTags:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: number
+                            name:
+                              type: string
+                          required:
+                            - id
+                            - name
+                required:
+                  - code
+                  - data
+      operationId: get-article-details
+      description: 获取文章详情
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: id
+          description: 文章ID
+          required: true
+    parameters: []
+components:
+  schemas: {}
