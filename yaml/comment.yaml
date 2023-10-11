@@ -98,6 +98,36 @@ paths:
               required:
                 - content
                 - commentId
+  /comment/get-comment-reply:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - comment
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Replie'
+                required:
+                  - code
+                  - data
+      operationId: get-comment-reply
+      description: 查询一个评论的回复
+      parameters:
+        - schema:
+            type: number
+          in: query
+          name: commentId
+          required: true
 components:
   schemas:
     Comment:
@@ -152,6 +182,4 @@ components:
         - content
         - createdAt
         - senderId
-        - recipientId
-        - recipientName
         - senderName

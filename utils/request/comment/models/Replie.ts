@@ -7,7 +7,7 @@ export type Replie = {
     content: string;
     createdAt: string;
     senderId: number;
-    recipientId: number;
-    recipientName: string;
+    recipientId?: number;
+    recipientName?: string;
     senderName: string;
 };

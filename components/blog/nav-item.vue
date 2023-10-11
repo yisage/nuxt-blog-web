@@ -5,7 +5,7 @@
 </template>
 <script lang="tsx" setup >
 import BlogNavItem from './nav-item.vue';
-import { VNode } from './type';
+import { VNode } from './index.type';
 const props = defineProps({
     outline: {
         type: Array as PropType<VNode[]>,

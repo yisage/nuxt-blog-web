@@ -3,7 +3,8 @@
         <Card>
             <h3 class="title is-5">评论</h3>
             <BlogCommentInput @submit="submit"></BlogCommentInput>
-            <BlogCommentItem v-for="data in commentList" :data="data" :key="data.commentId"></BlogCommentItem>
+            <BlogCommentItem v-for="data in commentList" :data="data" :key="data.commentId"
+                @commentCallBack="commentCallBack"></BlogCommentItem>
         </Card>
     </div>
 </template>
@@ -21,8 +22,6 @@ const props = defineProps({
 const { articleId } = props
 const commentList = ref<Comment[]>([])
 
-
-
 const getCommentList = async function () {
     const res = await CommentService.getCommentList({ articleId })
     commentList.value = res.data
@@ -38,6 +37,13 @@ const submit = async function (content: string) {
     Message.success('评论成功!');
     getCommentList()
 
+}
+
+const commentCallBack = async function (comment: Comment) {
+    const { commentId } = comment;
+    const res = await CommentService.getCommentReply({ commentId });
+    const replie = res.data
+    comment.replies = replie
 }
 
 </script>

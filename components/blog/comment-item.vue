@@ -43,7 +43,9 @@ const prop = defineProps({
         type: Object as PropType<Comment>,
         required: true
     }
-})
+});
+
+const emit = defineEmits(['commentCallBack'])
 
 
 
@@ -52,15 +54,14 @@ const replieRef = ref();
 const inputKey = ref(-1);
 
 const inputCallBack = async function (content: string) {
-    console.log(inputKey)
     if (inputKey.value === -1) {
-       
         const requestBody = {
             content,
             commentId: prop.data.commentId
         }
-        await CommentService.addReply({ requestBody })
-    }else{
+        await CommentService.addReply({ requestBody });
+        emit('commentCallBack', prop.data)
+    } else {
         const replie = prop.data.replies[inputKey.value];
         const recipientId = replie.senderId
         const requestBody = {
@@ -69,10 +70,15 @@ const inputCallBack = async function (content: string) {
             commentId: prop.data.commentId
         }
         await CommentService.addReply({ requestBody })
+        emit('commentCallBack', prop.data)
     }
 }
 
 const commentReplieBtnClick = function (key: number) {
+    if(inputKey.value===key){
+        useClearInput()
+        return
+    }
     //记录key值
     inputKey.value = key
     //清理所有输入框

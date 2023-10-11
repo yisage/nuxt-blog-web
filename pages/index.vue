@@ -1,11 +1,11 @@
 <template>
     <section class="section">
         <div class="columns container">
-            <article class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen">
+            <article class="column order-2 column-main is-12-tablet is-8-desktop is-6-widescreen">
                 <IndexArticleCard v-for="(item) in articleList" :articleData="item" :key="item.articleId">
                 </IndexArticleCard>
             </article>
-            <article class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1">
+            <article class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-hidden-touch">
                 <IndexBasicInfo></IndexBasicInfo>
                 <IndexTool></IndexTool>
             </article>

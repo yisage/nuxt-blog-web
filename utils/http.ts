@@ -45,10 +45,6 @@ const logError = function (error: any) {
     }
 }
 
-const isDev = function () {
-    return process.env.NODE_ENV === 'Development'
-}
-
 const timestamp = () => useRuntimeConfig().public.timestamp;
 const BASEURL = `/api`
 
@@ -56,9 +52,6 @@ export const request = async function <T>(OpenAPI: OpenAPIConfig, params: ApiReq
 
     const url = `${BASEURL}${params.url}?s=${timestamp()}`;
     const headers = { ...getTokenHeaders() };
-    console.log(url)
-    console.log(headers)
-    console.log(params)
     try {
 
         const { data, error } = await useFetch(url, { headers, method: params.method, query: params.query, body: params.body });

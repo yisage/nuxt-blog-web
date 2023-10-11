@@ -2,6 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { Comment } from '../models/Comment';
+import type { Replie } from '../models/Replie';
 
 import type { CancelablePromise } from '../../core/CancelablePromise';
 import { OpenAPI } from '../../core/OpenAPI';
@@ -82,6 +83,29 @@ recipientId?: number;
             url: '/comment/add-reply',
             body: requestBody,
             mediaType: 'application/json',
+        });
+    }
+
+    /**
+     * Your GET endpoint
+     * 查询一个评论的回复
+     * @returns any OK
+     * @throws ApiError
+     */
+    public static getCommentReply({
+commentId,
+}: {
+commentId: number,
+}): Promise<{
+code: number;
+data: Array<Replie>;
+}> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/comment/get-comment-reply',
+            query: {
+                'commentId': commentId,
+            },
         });
     }
 

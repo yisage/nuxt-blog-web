@@ -21,11 +21,9 @@ export const $Replie = {
 },
         recipientId: {
     type: 'number',
-    isRequired: true,
 },
         recipientName: {
     type: 'string',
-    isRequired: true,
 },
         senderName: {
     type: 'string',

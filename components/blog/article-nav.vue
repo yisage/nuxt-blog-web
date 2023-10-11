@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts" setup>
-import { VNode } from './type';
+import { VNode } from './index.type';
 defineProps({
     outline: {
         type: Array as PropType<VNode[]>,
